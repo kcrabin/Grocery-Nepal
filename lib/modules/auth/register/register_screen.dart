@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 50,
               ),
               Center(
-                child: CostomButton('Register', () {
+                child: CustomButton('Register', () {
                   if (_passwordController.text.trim().isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

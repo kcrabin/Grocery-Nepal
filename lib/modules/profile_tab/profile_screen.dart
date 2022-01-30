@@ -3,6 +3,7 @@ import 'package:grocery_nepal/modules/auth/change_password/change_password_scree
 import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
 import 'package:grocery_nepal/modules/edit_details/edit_details_screen.dart';
 import 'package:grocery_nepal/modules/favourites/favourites_screen.dart';
+import 'package:grocery_nepal/modules/profile_tab/about_us/about_us_screen.dart';
 
 import 'package:grocery_nepal/modules/profile_tab/widgets/item_tile.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/logout_button.dart';
@@ -76,7 +77,16 @@ class ProfileScreen extends StatelessWidget {
             ItemTile(
               icon: Icons.info_outline,
               label: 'About Us',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return AboutUs();
+                    },
+                  ),
+                );
+              },
             ),
             ItemTile(
               icon: Icons.feedback_outlined,

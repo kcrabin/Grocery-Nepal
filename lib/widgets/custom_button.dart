@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
 
-class CostomButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final VoidCallback onpress;
   final String text;
 
-  const CostomButton(
+  const CustomButton(
     this.text,
     this.onpress,
   );

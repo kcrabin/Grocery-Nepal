@@ -68,7 +68,7 @@ class CartScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: CostomButton('Checkout(Rs. 1200)', () {
+            child: CustomButton('Checkout(Rs. 1200)', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {

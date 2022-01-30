@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                 ),
                 Center(
-                  child: CostomButton('Log in', () {
+                  child: CustomButton('Log in', () {
                     Navigator.pop(context);
                   }),
                 ),

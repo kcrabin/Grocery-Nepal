@@ -34,7 +34,7 @@ class ChangePasswordScreen extends StatelessWidget {
               height: 50,
             ),
             Center(
-              child: CostomButton('Change', () {
+              child: CustomButton('Change', () {
                 if (oldPasswordController.text.trim().isEmpty &&
                     newPasswordController.text.trim().isEmpty &&
                     confirmPasswordController.text.trim().isEmpty) {

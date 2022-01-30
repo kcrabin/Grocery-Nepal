@@ -32,7 +32,7 @@ class EditDetails extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CostomButton('Change', () {}),
+              child: CustomButton('Change', () {}),
             )
           ],
         ),

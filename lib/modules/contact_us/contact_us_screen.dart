@@ -67,7 +67,7 @@ class ContactUs extends StatelessWidget {
             const SizedBox(
               height: 24.0,
             ),
-            CostomButton(
+            CustomButton(
               'Send',
               () {
                 launch('mailto:kcrabin587@gmail.com? subject=' +
