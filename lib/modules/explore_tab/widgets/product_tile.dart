@@ -40,8 +40,11 @@ class ProductTile extends StatelessWidget {
           children: [
             Expanded(
               child: Center(
-                child: Image.asset(
+                child: Image.network(
                   product.image,
+                  errorBuilder: (context, url, error) {
+                    return Image.asset("assets/images/dummy_image.png");
+                  },
                 ),
               ),
             ),

@@ -13,29 +13,52 @@ class ProductCounter extends StatefulWidget {
 
 class _ProductCounterState extends State<ProductCounter> {
   int _count = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _count = widget.quantity;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        InkWell(
-          onTap: () {
-            if (_count > 1) {
-              setState(() {
-                _count--;
-              });
-            }
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: greenColor,
-            ),
-            padding: const EdgeInsets.all(2),
-            child: const Icon(
-              Icons.remove,
-              color: Colors.white,
-              size: 20,
+        Container(
+          height: 25,
+          width: 25,
+          decoration: BoxDecoration(
+            color: greenColor,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: InkWell(
+            onTap: () {
+              if (_count > 1) {
+                setState(() {
+                  _count--;
+                });
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Cannot be less than 1'),
+                    duration: Duration(microseconds: 1000),
+                    backgroundColor: greenColor,
+                  ),
+                );
+              }
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: greenColor,
+              ),
+              padding: const EdgeInsets.all(2),
+              child: const Icon(
+                Icons.remove,
+                color: Colors.white,
+                size: 20,
+              ),
             ),
           ),
         ),

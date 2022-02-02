@@ -9,31 +9,45 @@ class BottomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      color: greenColor.withOpacity(0.1),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Row(
         children: [
+          Expanded(
+            child: MaterialButton(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text('Added to cart'),
+                      duration: Duration(milliseconds: 2000),
+                      backgroundColor: greenColor),
+                );
+              },
+              child: const Text(
+                'Add to cart',
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+              color: greenColor,
+              elevation: 0,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite_outline,
               color: Colors.grey,
               size: 30,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
-          Expanded(
-            child: CustomButton('Add to Cart', () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text('Added to cart'),
-                    duration: Duration(milliseconds: 2000),
-                    backgroundColor: greenColor),
-              );
-            }),
-          )
         ],
       ),
     );

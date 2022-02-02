@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_nepal/data/models/cart_items.dart';
 import 'package:grocery_nepal/data/models/product.dart';
 
 import 'widgets/bottom_container.dart';
@@ -13,7 +14,10 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.name),
+        title: Text(
+          product.name,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
       ),
       body: Column(children: [
         Expanded(child: DetailBody(product: product)),

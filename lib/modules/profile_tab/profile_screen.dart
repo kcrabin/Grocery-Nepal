@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text('Settings'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -48,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             ItemTile(
               icon: Icons.feed_outlined,
-              label: 'My Details',
+              label: 'Edit Profile',
               onPress: () {
                 Navigator.push(
                   context,

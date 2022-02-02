@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
 import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'grocery nepal',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -37,6 +40,10 @@ class MyApp extends StatelessWidget {
               centerTitle: true),
         ),
         // home: const HomeScreen(),
+
+        initialBinding: BindingsBuilder(() {
+          Get.put(AppCOntroller(), permanent: true);
+        }),
         initialRoute: '/',
         routes: {
           '/': (context) => const HomeScreen(),

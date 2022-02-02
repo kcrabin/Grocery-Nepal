@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/modules/product_detail/widgets/product_detail.dart';
+import 'product_counter.dart';
 
 import 'image_container.dart';
 
@@ -11,16 +13,29 @@ class DetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ImageContainer(
-            image: product.image,
-          ),
-          Text(product.name),
-          Text(product.unit),
-        ]),
-      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        ImageContainer(
+          image: product.image,
+        ),
+        Text(
+          product.name,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        ),
+        Text(product.description),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ProductCounter(1),
+            Text(
+              '1 ${product.unit}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        ProductDetail(
+          description: product.description,
+        )
+      ]),
     );
   }
 }

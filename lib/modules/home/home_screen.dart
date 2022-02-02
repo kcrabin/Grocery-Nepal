@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/modules/cart_tab/cart_screen.dart';
 import 'package:grocery_nepal/modules/explore_tab/explore_screen.dart';
-import 'package:grocery_nepal/modules/order_tab/order_screen.dart';
+import 'package:grocery_nepal/modules/history_tab/history_screen.dart';
 import 'package:grocery_nepal/modules/profile_tab/profile_screen.dart';
 import '../../constants.dart';
 
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> screens = [
     ExploreScreen(),
     CartScreen(),
-    OrderScreen(),
+    HistoryScreen(),
     ProfileScreen()
   ];
 
