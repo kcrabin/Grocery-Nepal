@@ -1,5 +1,13 @@
 import 'package:get/get.dart';
 
-class AppCOntroller extends GetxController {
-  final inLoggedIn = true.obs;
+class AppController extends GetxController {
+  final isLoggedIn = false.obs;
+
+  void login() {
+    isLoggedIn(true);
+  }
+
+  void logout() {
+    isLoggedIn(false);
+  }
 }

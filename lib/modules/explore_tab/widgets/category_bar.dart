@@ -10,7 +10,7 @@ final List<Category> categories = [
   Category(name: 'Vegetables', icon: 'assets/icons/vegetable.svg'),
   Category(name: 'Fruits', icon: 'assets/icons/fruit.svg'),
   Category(name: 'Meat', icon: 'assets/icons/meat.svg'),
-  Category(name: 'Fish', icon: 'assets/icons/fish.svg'),
+  Category(name: 'Others', icon: 'assets/icons/fish.svg'),
 ];
 
 // final List<Product> products = [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_nepal/modules/explore_tab/widgets/category_bar.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/modules/explore_tab/widgets/explore_tab_controller.dart';
+import 'package:grocery_nepal/widgets/widgets.dart';
 
 import 'widgets/product_tile.dart';
 import 'widgets/search_bar.dart';
@@ -18,18 +19,11 @@ class ExploreScreen extends StatelessWidget {
       ),
       body: Obx(
         () => controller.isLoading.isTrue
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? Loading()
             : controller.isError.isTrue
-                ? Center(
-                    child: Column(children: [
-                      Text(controller.errorMessage),
-                      ElevatedButton(
-                          onPressed: controller.getProducts,
-                          child: const Text('Try again'))
-                    ]),
-                  )
+                ? ErrorPage(
+                    errorMessage: controller.errorMessage,
+                    onRetry: controller.getProducts)
                 : Column(
                     children: [
                       SerchBar(),

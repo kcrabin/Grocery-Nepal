@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../../../app_controller.dart';
 
-class LogoutButton extends StatelessWidget {
-  const LogoutButton({
+class LoginButton extends StatelessWidget {
+  const LoginButton({
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +15,7 @@ class LogoutButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onPressed: () {
-        Get.find<AppController>().logout();
+        Get.find<AppController>().login();
         // Navigator.pushNamed(context, '/login');
       },
       child: SizedBox(
@@ -24,19 +24,19 @@ class LogoutButton extends StatelessWidget {
           children: const [
             Center(
               child: Text(
-                'Log Out',
-                style: TextStyle(color: greenColor, fontSize: 17),
+                'Log In',
+                style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
             Icon(
-              Icons.logout,
-              color: greenColor,
+              Icons.login,
+              color: Colors.white,
             )
           ],
         ),
       ),
-      color: Colors.grey.shade300,
-      elevation: 0,
+      color: greenColor,
+      elevation: 3,
     );
   }
 }

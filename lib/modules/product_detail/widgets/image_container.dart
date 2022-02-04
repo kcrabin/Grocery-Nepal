@@ -23,8 +23,8 @@ class ImageContainer extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: Image.asset(
-          image,
+        child: Image.network(
+          imageUrl + image,
           fit: BoxFit.fitHeight,
         ),
       ),

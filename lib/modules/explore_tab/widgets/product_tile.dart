@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/data/models/product.dart';
 import 'package:grocery_nepal/modules/product_detail/product_detail_screen.dart';
+import 'package:grocery_nepal/widgets/widgets.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({Key? key, required this.product}) : super(key: key);
@@ -41,11 +43,17 @@ class ProductTile extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Image.network(
-                  product.image,
+                  imageUrl + product.image,
                   errorBuilder: (context, url, error) {
                     return Image.asset("assets/images/dummy_image.png");
                   },
                 ),
+                // CachedNetworkImage(
+                //   imageUrl: imageUrl + product.image,
+                //   placeholder: (context, url) => const Loading(),
+                //   errorWidget: (context, url, error) =>
+                //       Image.asset("assets/images/dummy_image.png"),
+                // ),
               ),
             ),
             Text(

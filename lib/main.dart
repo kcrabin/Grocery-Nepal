@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         // home: const HomeScreen(),
 
         initialBinding: BindingsBuilder(() {
-          Get.put(AppCOntroller(), permanent: true);
+          Get.put(AppController(), permanent: true);
         }),
         initialRoute: '/',
         routes: {

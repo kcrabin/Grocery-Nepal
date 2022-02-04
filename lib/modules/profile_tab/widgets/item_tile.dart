@@ -38,8 +38,8 @@ class ItemTile extends StatelessWidget {
                     child: Align(
                   alignment: Alignment.centerRight,
                   child: Icon(
-                    Icons.arrow_back_ios,
-                    size: 18,
+                    Icons.chevron_right_outlined,
+                    size: 25,
                   ),
                 ))
               ],
