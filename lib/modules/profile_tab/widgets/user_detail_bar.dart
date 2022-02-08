@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/app_controller.dart';
 
 import '../../../constants.dart';
 
@@ -9,6 +11,7 @@ class UserDetailBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appController = Get.find<AppController>();
     return Row(
       children: [
         const CircleAvatar(
@@ -24,13 +27,13 @@ class UserDetailBar extends StatelessWidget {
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              'John Doe',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              appController.userProfile!.name ?? '',
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text(
-              'johndoe@gmail.com',
+              appController.userProfile!.email ?? '',
               style: TextStyle(color: greyColor),
             )
           ],

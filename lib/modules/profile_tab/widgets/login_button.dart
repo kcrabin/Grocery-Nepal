@@ -16,9 +16,9 @@ class LoginButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onPressed: () {
-        Get.find<AppController>().login();
-        // Navigator.pushNamed(context, '/login');
-        Get.to(() => LoginScreen());
+        // Get.find<AppController>().login();
+        Navigator.pushNamed(context, '/login');
+        // Get.to(() => LoginScreen());
       },
       child: SizedBox(
         width: MediaQuery.of(context).size.width - 100,
