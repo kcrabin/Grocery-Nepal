@@ -42,12 +42,21 @@ class ProductTile extends StatelessWidget {
           children: [
             Expanded(
               child: Center(
-                child: Image.network(
-                  imageUrl + product.image,
-                  errorBuilder: (context, url, error) {
-                    return Image.asset("assets/images/dummy_image.png");
-                  },
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl + product.image,
+                  placeholder: (context, url) => const Loading(size: 100),
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/dummy_image.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
+
+                // Image.network(
+                //   imageUrl + product.image,
+                //   errorBuilder: (context, url, error) {
+                //     return Image.asset("assets/images/dummy_image.png");
+                //   },
+                // ),
                 // CachedNetworkImage(
                 //   imageUrl: imageUrl + product.image,
                 //   placeholder: (context, url) => const Loading(),

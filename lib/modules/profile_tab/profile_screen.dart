@@ -23,103 +23,106 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Obx(
-              () => appController.isLoggedIn.isFalse
-                  ? Divider(
-                      thickness: 1,
-                    )
-                  : Column(
-                      children: [
-                        const UserDetailBar(),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Divider(
-                          thickness: 1,
-                        ),
-                        ItemTile(
-                          icon: Icons.favorite_outline_outlined,
-                          label: 'Favourites',
-                          onPress: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return FavouriteScreen();
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                        ItemTile(
-                          icon: Icons.feed_outlined,
-                          label: 'Edit Profile',
-                          onPress: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return EditDetails();
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                        ItemTile(
-                          icon: Icons.lock_outline,
-                          label: 'Change Password',
-                          onPress: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ChangePasswordScreen();
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Obx(
+                () => appController.isLoggedIn.isFalse
+                    ? const Divider(
+                        thickness: 1,
+                      )
+                    : Column(
+                        children: [
+                          const UserDetailBar(),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Divider(
+                            thickness: 1,
+                          ),
+                          ItemTile(
+                            icon: Icons.favorite_outline_outlined,
+                            label: 'Favourites',
+                            onPress: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const FavouriteScreen();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                          ItemTile(
+                            icon: Icons.feed_outlined,
+                            label: 'Edit Profile',
+                            onPress: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const EditDetails();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                          ItemTile(
+                            icon: Icons.lock_outline,
+                            label: 'Change Password',
+                            onPress: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const ChangePasswordScreen();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+              ),
+              ItemTile(
+                icon: Icons.info_outline,
+                label: 'About Us',
+                onPress: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return AboutUs();
+                      },
                     ),
-            ),
-            ItemTile(
-              icon: Icons.info_outline,
-              label: 'About Us',
-              onPress: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return AboutUs();
-                    },
-                  ),
-                );
-              },
-            ),
-            ItemTile(
-              icon: Icons.feedback_outlined,
-              label: 'Contact Us',
-              onPress: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ContactUs();
-                    },
-                  ),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Obx(() => appController.isLoggedIn.isFalse
-                ? const LoginButton()
-                : const LogoutButton()),
-          ],
+                  );
+                },
+              ),
+              ItemTile(
+                icon: Icons.feedback_outlined,
+                label: 'Contact Us',
+                onPress: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ContactUs();
+                      },
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Obx(() => appController.isLoggedIn.isFalse
+                  ? const LoginButton()
+                  : const LogoutButton()),
+            ],
+          ),
         ),
       ),
     );

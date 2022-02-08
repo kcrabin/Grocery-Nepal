@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
 
 import '../../../app_controller.dart';
 
@@ -17,6 +18,7 @@ class LoginButton extends StatelessWidget {
       onPressed: () {
         Get.find<AppController>().login();
         // Navigator.pushNamed(context, '/login');
+        Get.to(() => LoginScreen());
       },
       child: SizedBox(
         width: MediaQuery.of(context).size.width - 100,
