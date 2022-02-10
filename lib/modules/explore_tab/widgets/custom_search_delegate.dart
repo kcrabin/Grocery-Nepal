@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/data/models/product/product.dart';
 import 'package:grocery_nepal/modules/explore_tab/widgets/explore_tab_controller.dart';
 
 import 'product_tile.dart';

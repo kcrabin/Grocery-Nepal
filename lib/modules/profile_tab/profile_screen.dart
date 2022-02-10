@@ -57,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
                             },
                           ),
                           ItemTile(
-                            icon: Icons.feed_outlined,
+                            icon: Icons.edit,
                             label: 'Edit Profile',
                             onPress: () {
                               Navigator.push(

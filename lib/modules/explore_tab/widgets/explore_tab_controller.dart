@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:grocery_nepal/data/api/product_api.dart';
-import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/data/models/product/product.dart';
 
 class ExploreTabController extends GetxController {
   final isLoading = false.obs;

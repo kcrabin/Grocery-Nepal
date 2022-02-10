@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/order.dart';
+import 'package:grocery_nepal/data/models/product/order.dart';
 import 'package:grocery_nepal/modules/order_detail/order_detail_screen.dart';
 
 class OrderHistoryTile extends StatelessWidget {

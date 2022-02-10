@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/data/models/product/product.dart';
 import 'package:grocery_nepal/modules/product_detail/product_detail_screen.dart';
 import 'package:grocery_nepal/widgets/widgets.dart';
 

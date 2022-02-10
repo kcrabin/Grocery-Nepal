@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/order_detail.dart';
+import 'package:grocery_nepal/data/models/product/order_detail.dart';
 
 // final OrderDetail orderDetail = OrderDetail(items: [Items(product:)]);
 

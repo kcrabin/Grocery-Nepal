@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/modules/explore_tab/widgets/product_tile.dart';
 
-import '../../../data/models/category.dart';
-import '../../../data/models/product.dart';
+import '../../../data/models/product/category.dart';
+import '../../../data/models/product/product.dart';
 import 'category_tile.dart';
 
 final List<Category> categories = [

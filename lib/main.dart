@@ -7,13 +7,20 @@ import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
 import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
 import 'package:grocery_nepal/modules/home/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var sharedPref = await SharedPreferences.getInstance();
+  runApp(MyApp(sharedPref));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp(
+    this.sharedPreferences,
+  );
+
+  final SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +49,7 @@ class MyApp extends StatelessWidget {
         // home: const HomeScreen(),
 
         initialBinding: BindingsBuilder(() {
-          Get.put(AppController(), permanent: true);
+          Get.put(AppController(sharedPreferences), permanent: true);
         }),
         initialRoute: '/',
         routes: {

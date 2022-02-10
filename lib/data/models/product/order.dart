@@ -1,4 +1,4 @@
-import 'package:grocery_nepal/data/models/cart_items.dart';
+import 'package:grocery_nepal/data/models/product/cart_items.dart';
 
 class Order {
   int id;

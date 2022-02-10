@@ -24,13 +24,16 @@ class ExploreScreen extends StatelessWidget {
                 ? ErrorPage(
                     errorMessage: controller.errorMessage,
                     onRetry: controller.getProducts)
-                : Column(
-                    children: [
-                      SerchBar(),
-                      Expanded(
-                        child: CategoryBar(products: controller.products),
-                      )
-                    ],
+                : RefreshIndicator(
+                    onRefresh: controller.getProducts,
+                    child: Column(
+                      children: [
+                        SerchBar(),
+                        Expanded(
+                          child: CategoryBar(products: controller.products),
+                        )
+                      ],
+                    ),
                   ),
       ),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grocery_nepal/constants.dart';
 
-import 'package:grocery_nepal/data/models/category.dart';
+import 'package:grocery_nepal/data/models/product/category.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile({required this.category, required this.isSelected});

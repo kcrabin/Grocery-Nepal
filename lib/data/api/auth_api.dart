@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/login_request.dart';
-import 'package:grocery_nepal/data/models/login_response.dart';
-import 'package:grocery_nepal/data/models/register_request.dart';
+import 'package:grocery_nepal/data/models/auth/login_request.dart';
+import 'package:grocery_nepal/data/models/auth/login_response.dart';
+import 'package:grocery_nepal/data/models/auth/register_request.dart';
+
 import 'package:http/http.dart' as http;
 
 class AuthApi {
@@ -23,7 +26,11 @@ class AuthApi {
     print(response.statusCode);
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      return LoginResponse.fromJson(data);
+      LoginResponse loginResponse = LoginResponse.fromJson(data);
+      await Get.find<AppController>()
+          .sharedPreferences
+          .setString('token', loginResponse.token ?? '');
+      return loginResponse;
     } else if (response.statusCode == 401) {
       throw Exception('Invalid credentials');
     } else {
@@ -49,7 +56,11 @@ class AuthApi {
     print(response.statusCode);
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      return LoginResponse.fromJson(data);
+      LoginResponse loginResponse = LoginResponse.fromJson(data);
+      await Get.find<AppController>()
+          .sharedPreferences
+          .setString('token', loginResponse.token ?? '');
+      return loginResponse;
     } else if (response.statusCode == 401) {
       throw Exception('Invalid credentials');
     } else {

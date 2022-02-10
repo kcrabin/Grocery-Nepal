@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/data/models/order.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/app_controller.dart';
+import 'package:grocery_nepal/data/models/product/order.dart';
 import 'package:grocery_nepal/modules/history_tab/widgets/order_history_tile.dart';
 import 'package:grocery_nepal/modules/history_tab/widgets/status_bar.dart';
+import 'package:grocery_nepal/modules/profile_tab/widgets/login_button.dart';
 
 final List<Order> orders = List.generate(
     10,
@@ -59,39 +62,55 @@ class _HistoryScreenState extends State<HistoryScreen> {
       appBar: AppBar(
         title: Text('Order History'),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: StatusBar(
-              onPressed: (index) {
-                setState(() {
-                  selectedIndex = index;
-                });
-                _controller.jumpToPage(index);
-              },
-              selectedIndex: selectedIndex,
-            ),
-          ),
-          Expanded(
-            child: PageView(
-              controller: _controller,
-              onPageChanged: (index) {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-              children: [
-                getOrders("All"),
-                getOrders("Pending"),
-                getOrders("Processing"),
-                getOrders("Delivered"),
-                getOrders("Cancelled"),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: Obx(() => Get.find<AppController>().isLoggedIn.isTrue
+          ? RefreshIndicator(
+              onRefresh: () async {},
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: StatusBar(
+                      onPressed: (index) {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                        _controller.jumpToPage(index);
+                      },
+                      selectedIndex: selectedIndex,
+                    ),
+                  ),
+                  Expanded(
+                    child: PageView(
+                      controller: _controller,
+                      onPageChanged: (index) {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      children: [
+                        getOrders("All"),
+                        getOrders("Pending"),
+                        getOrders("Processing"),
+                        getOrders("Delivered"),
+                        getOrders("Cancelled"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Login to view order history',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  LoginButton(),
+                ],
+              ),
+            )),
     );
   }
 

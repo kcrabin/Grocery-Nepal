@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/data/models/product/product.dart';
 import 'package:http/http.dart' as http;
 
 class ProductApi {
