@@ -3,10 +3,11 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/modules/auth/change_password/change_password_screen.dart';
 import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
-import 'package:grocery_nepal/modules/edit_details/edit_details_screen.dart';
+// import 'package:grocery_nepal/modules/edit_details/edit_details_screen.dart';
 import 'package:grocery_nepal/modules/favourites/favourites_screen.dart';
 import 'package:grocery_nepal/modules/profile_tab/about_us/about_us_screen.dart';
 import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/profile_tab/edit_profile/edit_profile_screen.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/item_tile.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/login_button.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/logout_button.dart';
@@ -60,28 +61,30 @@ class ProfileScreen extends StatelessWidget {
                             icon: Icons.edit,
                             label: 'Edit Profile',
                             onPress: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const EditDetails();
-                                  },
-                                ),
-                              );
+                              Get.to(() => EditProfileScreen());
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              // return const EditDetails();
+                              //     },
+                              //   ),
+                              // );
                             },
                           ),
                           ItemTile(
                             icon: Icons.lock_outline,
                             label: 'Change Password',
                             onPress: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const ChangePasswordScreen();
-                                  },
-                                ),
-                              );
+                              Get.to(() => ChangePasswordScreen());
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return const ChangePasswordScreen();
+                              //     },
+                              //   ),
+                              // );
                             },
                           ),
                         ],

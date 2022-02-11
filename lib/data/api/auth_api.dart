@@ -34,7 +34,7 @@ class AuthApi {
     } else if (response.statusCode == 401) {
       throw Exception('Invalid credentials');
     } else {
-      throw Exception('Unable to login');
+      throw Exception('Something went wrong');
     }
   }
 
@@ -64,7 +64,36 @@ class AuthApi {
     } else if (response.statusCode == 401) {
       throw Exception('Invalid credentials');
     } else {
-      throw Exception('Unable to login');
+      throw Exception('Something went wrong');
+    }
+  }
+
+  static Future<LoginResponse> changePassword(
+      {required String password}) async {
+    final url = baseUrl + "users/change-password/";
+    final request = jsonEncode({"password": password});
+    String token =
+        Get.find<AppController>().sharedPreferences.getString('token') ?? '';
+    final response = await http.put(
+      Uri.parse(url),
+      body: request,
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      LoginResponse loginResponse = LoginResponse.fromJson(data);
+      await Get.find<AppController>()
+          .sharedPreferences
+          .setString('token', loginResponse.token ?? '');
+      return loginResponse;
+    } else if (response.statusCode == 401) {
+      throw Exception("Invalid Credentials");
+    } else {
+      throw Exception("Something went wrong");
     }
   }
 }

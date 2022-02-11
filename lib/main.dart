@@ -7,6 +7,7 @@ import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
 import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
 import 'package:grocery_nepal/modules/home/home_screen.dart';
+import 'package:grocery_nepal/modules/order_tab/order_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         // home: const HomeScreen(),
 
         initialBinding: BindingsBuilder(() {
+          Get.put(OrderController());
           Get.put(AppController(sharedPreferences), permanent: true);
         }),
         initialRoute: '/',
