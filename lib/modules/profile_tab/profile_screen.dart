@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/modules/auth/change_password/change_password_screen.dart';
-import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
 // import 'package:grocery_nepal/modules/edit_details/edit_details_screen.dart';
 import 'package:grocery_nepal/modules/favourites/favourites_screen.dart';
 import 'package:grocery_nepal/modules/profile_tab/about_us/about_us_screen.dart';
@@ -12,6 +11,7 @@ import 'package:grocery_nepal/modules/profile_tab/widgets/item_tile.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/login_button.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/logout_button.dart';
 
+import 'contact_us/contact_us_screen.dart';
 import 'widgets/user_detail_bar.dart';
 
 class ProfileScreen extends StatelessWidget {

@@ -59,4 +59,8 @@ class AppController extends GetxController {
     Get.find<OrderController>().orders.clear();
     isLoggedIn(false);
   }
+
+  String getToken() {
+    return sharedPreferences.getString('token') ?? '';
+  }
 }
