@@ -61,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                             icon: Icons.edit,
                             label: 'Edit Profile',
                             onPress: () {
-                              Get.to(() => EditProfileScreen());
+                              Get.to(() => const EditProfileScreen());
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(
@@ -76,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                             icon: Icons.lock_outline,
                             label: 'Change Password',
                             onPress: () {
-                              Get.to(() => ChangePasswordScreen());
+                              Get.to(() => const ChangePasswordScreen());
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(
@@ -98,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return AboutUs();
+                        return const AboutUs();
                       },
                     ),
                   );

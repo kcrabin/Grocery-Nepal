@@ -28,7 +28,7 @@ class _ProductDetailState extends State<ProductDetail> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Product Detail',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
@@ -39,7 +39,7 @@ class _ProductDetailState extends State<ProductDetail> {
         ),
         isOpen
             ? Text(widget.description, textAlign: TextAlign.justify)
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

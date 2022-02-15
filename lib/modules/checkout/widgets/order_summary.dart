@@ -6,11 +6,11 @@ class OrderSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Order Summary",
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -19,16 +19,17 @@ class OrderSummary extends StatelessWidget {
           ),
           ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (context, index) => Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               "Cabbage",
                               style: TextStyle(
@@ -39,11 +40,11 @@ class OrderSummary extends StatelessWidget {
                             Text("Price"),
                           ],
                         ),
-                        Text("x1")
+                        const Text("x1")
                       ],
                     ),
                   )),
-          Align(
+          const Align(
             alignment: Alignment.centerRight,
             child: Text(
               "Total: Rs. 5000",

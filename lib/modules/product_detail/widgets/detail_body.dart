@@ -25,10 +25,10 @@ class DetailBody extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProductCounter(1),
+            const ProductCounter(1),
             Text(
               '1 ${product.unit}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],
         ),

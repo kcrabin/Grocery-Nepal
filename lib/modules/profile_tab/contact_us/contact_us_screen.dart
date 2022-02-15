@@ -24,13 +24,13 @@ class ContactUs extends StatelessWidget {
     String message = '';
     return Scaffold(
       appBar: AppBar(
-        title: Text('COntact us'),
+        title: const Text('COntact us'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: ListView(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             TextField(

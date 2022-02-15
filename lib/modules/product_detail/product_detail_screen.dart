@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/data/models/order/cart_items.dart';
 import 'package:grocery_nepal/data/models/product/product.dart';
 
 import 'widgets/bottom_container.dart';
@@ -21,7 +20,7 @@ class ProductDetail extends StatelessWidget {
       ),
       body: Column(children: [
         Expanded(child: DetailBody(product: product)),
-        BottomContainer(),
+        const BottomContainer(),
       ]),
     );
   }

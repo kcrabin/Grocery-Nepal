@@ -56,7 +56,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                                title: Text(
+                                title: const Text(
                                     'Do You Want to Remove from favourites?'),
                                 // content: Text('This is content'),
                                 actions: [
@@ -64,7 +64,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Cancel'),
+                                    child: const Text('Cancel'),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -74,12 +74,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Remove'),
+                                    child: const Text('Remove'),
                                   ),
                                 ],
                               ));
                     },
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                   )),
             ),
           ),

@@ -14,7 +14,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Change Password'),
+        title: const Text('Change Password'),
       ),
       body: SingleChildScrollView(
         child: Padding(

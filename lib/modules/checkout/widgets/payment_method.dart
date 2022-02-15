@@ -35,7 +35,7 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Column(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [

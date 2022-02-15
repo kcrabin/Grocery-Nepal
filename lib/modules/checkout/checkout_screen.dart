@@ -10,11 +10,11 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Checkout"),
+        title: const Text("Checkout"),
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             OrderSummary(),
             ShippingAddress(),
             PaymentMethodContainer(),

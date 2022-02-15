@@ -20,8 +20,8 @@ class _ProductCounterState extends State<ProductCounter> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 5),
-        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
             color: Colors.grey.shade100,
             borderRadius: BorderRadius.circular(5),
@@ -36,16 +36,16 @@ class _ProductCounterState extends State<ProductCounter> {
                   });
                 }
               },
-              child: Icon(
+              child: const Icon(
                 Icons.remove,
                 color: greenColor,
                 size: 18,
               ),
             ),
             Container(
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.symmetric(horizontal: 7),
-              constraints: BoxConstraints(minWidth: 30),
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.symmetric(horizontal: 7),
+              constraints: const BoxConstraints(minWidth: 30),
               decoration: BoxDecoration(
                   color: Colors.grey.shade300,
                   border: Border.all(color: Colors.grey.shade300)),
@@ -57,7 +57,7 @@ class _ProductCounterState extends State<ProductCounter> {
                   count++;
                 });
               },
-              child: Icon(
+              child: const Icon(
                 Icons.add,
                 color: greenColor,
                 size: 18,

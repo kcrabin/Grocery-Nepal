@@ -15,7 +15,7 @@ class _AboutUsState extends State<AboutUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About us'),
+        title: const Text('About us'),
       ),
       body: Stack(
         children: [
@@ -34,7 +34,7 @@ class _AboutUsState extends State<AboutUs> {
                     value: progress / 100,
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/data/models/product/product.dart';
 import 'package:grocery_nepal/widgets/loading.dart';
 
 import '../../../constants.dart';
@@ -16,7 +15,7 @@ class ImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
       height: 200,
       width: double.maxFinite,
       decoration: BoxDecoration(

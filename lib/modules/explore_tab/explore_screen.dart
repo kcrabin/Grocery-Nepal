@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:grocery_nepal/modules/explore_tab/widgets/explore_tab_controller.dart';
 import 'package:grocery_nepal/widgets/widgets.dart';
 
-import 'widgets/product_tile.dart';
 import 'widgets/search_bar.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -19,7 +18,7 @@ class ExploreScreen extends StatelessWidget {
       ),
       body: Obx(
         () => controller.isLoading.isTrue
-            ? Loading()
+            ? const Loading()
             : controller.isError.isTrue
                 ? ErrorPage(
                     errorMessage: controller.errorMessage,
@@ -28,7 +27,7 @@ class ExploreScreen extends StatelessWidget {
                     onRefresh: controller.getProducts,
                     child: Column(
                       children: [
-                        SerchBar(),
+                        const SerchBar(),
                         Expanded(
                           child: CategoryBar(products: controller.products),
                         )

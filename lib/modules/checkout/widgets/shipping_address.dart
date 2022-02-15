@@ -25,14 +25,14 @@ class ShippingAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Column(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 "Shipping Address",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -46,14 +46,14 @@ class ShippingAddress extends StatelessWidget {
                       return ShippingAddressEdit();
                     }));
                   },
-                  child: Text(
+                  child: const Text(
                     'Edit',
                     style: TextStyle(color: greenColor),
                   ))
             ],
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: greenColor.withOpacity(0.1),

@@ -61,27 +61,27 @@ class OrderDetailsScreen extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          Text("Delivered To"),
+                          const Text("Delivered To"),
                           Text(
                             "${controller.orderDetail!.shippingAddress}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          Text("Payment Method"),
+                          const Text("Payment Method"),
                           Text(
                             "${controller.orderDetail!.paymentMethod}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             thickness: 1,
                           ),
-                          Text(
+                          const Text(
                             "Order Summary",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           ),
                           ListView.builder(
                               itemCount: controller.orderDetail!.items.length,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return Row(
@@ -110,13 +110,13 @@ class OrderDetailsScreen extends StatelessWidget {
                                   ],
                                 );
                               }),
-                          Divider(
+                          const Divider(
                             thickness: 1,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Total: ",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class OrderDetailsScreen extends StatelessWidget {
                               ),
                               Text(
                                 "${controller.orderDetail!.total}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
                               )
@@ -133,13 +133,13 @@ class OrderDetailsScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Payment Status: "),
+                              const Text("Payment Status: "),
                               controller.orderDetail!.paymentStatus == true
-                                  ? Text(
+                                  ? const Text(
                                       "PAID",
                                       style: TextStyle(color: greenColor),
                                     )
-                                  : Text(
+                                  : const Text(
                                       "Unpaid",
                                       style: TextStyle(color: Colors.red),
                                     )

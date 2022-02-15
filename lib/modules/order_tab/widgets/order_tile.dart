@@ -14,7 +14,7 @@ class OrderTile extends StatelessWidget {
       onTap: () {
         // Navigator.push(context,
         //     MaterialPageRoute(builder: (context) => OrderDetailsScreen()));
-        Get.to(() => OrderDetailsScreen(), arguments: order.id);
+        Get.to(() => const OrderDetailsScreen(), arguments: order.id);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/widgets/custom_button.dart';
 import 'package:grocery_nepal/widgets/input_field.dart';
 import 'package:grocery_nepal/widgets/widgets.dart';
