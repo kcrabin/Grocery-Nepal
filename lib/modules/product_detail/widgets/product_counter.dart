@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/product_detail/product_detail_controller.dart';
 
 import '../../../constants.dart';
 
-class ProductCounter extends StatefulWidget {
-  const ProductCounter(this.quantity, {Key? key}) : super(key: key);
-  final int quantity;
-  @override
-  State<ProductCounter> createState() => _ProductCounterState();
-}
-
-class _ProductCounterState extends State<ProductCounter> {
-  int count = 1;
-  @override
-  void initState() {
-    super.initState();
-    count = widget.quantity;
-  }
-
+class ProductCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProductDetailController>();
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -29,13 +18,7 @@ class _ProductCounterState extends State<ProductCounter> {
         child: Row(
           children: [
             InkWell(
-              onTap: () {
-                if (count > 1) {
-                  setState(() {
-                    count--;
-                  });
-                }
-              },
+              onTap: controller.decrement,
               child: const Icon(
                 Icons.remove,
                 color: greenColor,
@@ -49,14 +32,11 @@ class _ProductCounterState extends State<ProductCounter> {
               decoration: BoxDecoration(
                   color: Colors.grey.shade300,
                   border: Border.all(color: Colors.grey.shade300)),
-              child: Center(child: Text("${count}")),
+              child:
+                  Center(child: Obx(() => Text("${controller.count.value}"))),
             ),
             InkWell(
-              onTap: () {
-                setState(() {
-                  count++;
-                });
-              },
+              onTap: controller.increment,
               child: const Icon(
                 Icons.add,
                 color: greenColor,

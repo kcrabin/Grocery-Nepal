@@ -10,6 +10,8 @@ import 'package:grocery_nepal/modules/home/home_screen.dart';
 import 'package:grocery_nepal/modules/order_tab/order_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'modules/favourites/favourites_controller.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var sharedPref = await SharedPreferences.getInstance();
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget {
         initialBinding: BindingsBuilder(() {
           Get.put(OrderController());
           Get.put(AppController(sharedPreferences), permanent: true);
+          Get.put(FavouitesController(), permanent: true);
         }),
         initialRoute: '/',
         routes: {

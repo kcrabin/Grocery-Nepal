@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const FavouriteScreen();
+                                    return FavouriteScreen();
                                   },
                                 ),
                               );

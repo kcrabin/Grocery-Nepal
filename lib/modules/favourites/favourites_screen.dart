@@ -1,88 +1,76 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/data/models/product/product.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/favourites/favourites_controller.dart';
+import 'package:grocery_nepal/modules/product_detail/product_detail_screen.dart';
+import 'package:grocery_nepal/widgets/loading.dart';
 
-class FavouriteScreen extends StatefulWidget {
-  const FavouriteScreen({Key? key}) : super(key: key);
-
-  @override
-  State<FavouriteScreen> createState() => _FavouriteScreenState();
-}
-
-class _FavouriteScreenState extends State<FavouriteScreen> {
-  final List<Product> favourites = [
-    Product(
-        category: 'Fruites',
-        description: 'this is healthy',
-        id: 1,
-        image: 'assets/images/dummy_image.png',
-        name: 'cabbage',
-        unit: '5',
-        price: 300),
-    Product(
-        category: 'Fruites',
-        description: 'this is healthy',
-        id: 1,
-        image: 'assets/images/dummy_image.png',
-        name: 'cabbage',
-        unit: '5',
-        price: 300),
-    Product(
-        category: 'Fruites',
-        description: 'this is healthy',
-        id: 1,
-        image: 'assets/images/dummy_image.png',
-        name: 'cabbage',
-        unit: '5',
-        price: 300),
-  ];
-
+class FavouriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Favourites'),
         ),
-        body: ListView.builder(
-          itemCount: favourites.length,
-          itemBuilder: (context, index) => Card(
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                  leading: Image.asset(favourites[index].image),
-                  title: Text(favourites[index].name),
-                  trailing: IconButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                title: const Text(
-                                    'Do You Want to Remove from favourites?'),
-                                // content: Text('This is content'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        favourites.removeAt(index);
-                                      });
+        body: GetBuilder<FavouitesController>(builder: (controller) {
+          return controller.favourites.isEmpty
+              ? Center(
+                  child: Text('You have no favourites'),
+                )
+              : ListView.builder(
+                  itemCount: controller.favourites.length,
+                  itemBuilder: (context, index) => Card(
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                          onTap: () {
+                            Get.to(() => ProductDetail(),
+                                arguments: controller.favourites[index]);
+                          },
+                          leading: CachedNetworkImage(
+                            imageUrl: controller.favourites[index].image,
+                            placeholder: (context, url) =>
+                                const Loading(size: 100),
+                            errorWidget: (context, url, error) => Image.asset(
+                              'assets/images/dummy_image.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          title: Text(controller.favourites[index].name),
+                          trailing: IconButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: const Text(
+                                            'Do You Want to Remove from favourites?'),
+                                        // content: Text('This is content'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              controller.removeFavourite(
+                                                  controller.favourites[index]);
 
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('Remove'),
-                                  ),
-                                ],
-                              ));
-                    },
-                    icon: const Icon(Icons.delete),
-                  )),
-            ),
-          ),
-        ));
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('Remove'),
+                                          ),
+                                        ],
+                                      ));
+                            },
+                            icon: const Icon(Icons.delete),
+                          )),
+                    ),
+                  ),
+                );
+        }));
   }
 }

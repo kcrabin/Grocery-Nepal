@@ -20,7 +20,10 @@ class Product {
     if (json["id"] is int) this.id = json["id"];
     if (json["name"] is String) this.name = json["name"];
     if (json["description"] is String) this.description = json["description"];
-    if (json["price"] is String) this.price = double.parse(json["price"]);
+    if (json["price"] is double)
+      this.price = json["price"];
+    else
+      this.price = double.parse(json["price"].toString());
     if (json["image"] is String) this.image = json["image"];
     if (json["unit"] is String) this.unit = json["unit"];
     if (json["category"] is String) this.category = json["category"];

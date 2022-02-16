@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/data/api/auth_api.dart';
-import 'package:flutter/material.dart';
 
 class LoginController extends GetxController {
   final isLoading = false.obs;

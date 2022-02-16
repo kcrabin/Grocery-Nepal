@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:grocery_nepal/data/models/product/product.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/favourites/favourites_controller.dart';
 
 import '../../../constants.dart';
 
 class BottomContainer extends StatelessWidget {
-  const BottomContainer({Key? key}) : super(key: key);
+  const BottomContainer({required this.product});
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +41,31 @@ class BottomContainer extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_outline,
-              color: Colors.grey,
-              size: 30,
-            ),
-          ),
+          GetBuilder<FavouitesController>(builder: (favouitesController) {
+            return favouitesController.favourites.firstWhereOrNull(
+                        (element) => element.id == product.id) ==
+                    null
+                ? IconButton(
+                    onPressed: () {
+                      favouitesController.addFavourite(product);
+                    },
+                    icon: const Icon(
+                      Icons.favorite_outline,
+                      color: Colors.grey,
+                      size: 30,
+                    ),
+                  )
+                : IconButton(
+                    onPressed: () {
+                      favouitesController.removeFavourite(product);
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 30,
+                    ),
+                  );
+          }),
           const SizedBox(
             width: 15,
           ),
