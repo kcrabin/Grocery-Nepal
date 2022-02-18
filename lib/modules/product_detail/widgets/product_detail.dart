@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ProductDetail extends StatefulWidget {
-  const ProductDetail({required this.description});
+class ProductDetailContainer extends StatefulWidget {
+  const ProductDetailContainer({required this.description});
 
   final String description;
 
   @override
-  State<ProductDetail> createState() => _ProductDetailState();
+  State<ProductDetailContainer> createState() => _ProductDetailContainerState();
 }
 
-class _ProductDetailState extends State<ProductDetail> {
+class _ProductDetailContainerState extends State<ProductDetailContainer> {
   bool isOpen = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,18 +27,21 @@ class _ProductDetailState extends State<ProductDetail> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Product Detail',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                Icon(isOpen ? Icons.expand_more : Icons.chevron_right)
+                Icon(isOpen ? Icons.expand_more : Icons.chevron_right),
               ],
             ),
           ),
         ),
         isOpen
-            ? Text(widget.description, textAlign: TextAlign.justify)
-            : const SizedBox(),
+            ? Text(
+                widget.description,
+                textAlign: TextAlign.justify,
+              )
+            : SizedBox()
       ],
     );
   }

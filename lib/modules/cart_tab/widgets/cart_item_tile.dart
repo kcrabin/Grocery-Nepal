@@ -1,13 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_nepal/data/models/order/cart_items.dart';
 
+import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
 import '../../../constants.dart';
 import 'product_counter.dart';
 
 class CartItemTile extends StatelessWidget {
   final CartItem cartItem;
-
-  const CartItemTile(this.cartItem, {Key? key}) : super(key: key);
+  const CartItemTile(
+    this.cartItem, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,14 @@ class CartItemTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
               children: [
-                Image.asset(
-                  cartItem.product.image,
-                  height: 50,
+                CachedNetworkImage(
+                  imageUrl: imageUrl + cartItem.product.image,
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/dummy_image.png',
+                    fit: BoxFit.cover,
+                  ),
                   width: 50,
+                  height: 50,
                 ),
                 const SizedBox(
                   width: 20,
@@ -39,7 +48,7 @@ class CartItemTile extends StatelessWidget {
                         cartItem.product.unit,
                         style: const TextStyle(fontSize: 12, color: greyColor),
                       ),
-                      ProductCounter(cartItem.quantity),
+                      ProductCounter(cartItem),
                     ],
                   ),
                 ),
@@ -49,16 +58,49 @@ class CartItemTile extends StatelessWidget {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.delete_outline,
-                        color: Colors.grey,
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  content:
+                                      const Text('Remove the item from cart?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'Cancel',
+                                        style: TextStyle(color: greenColor),
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.find<CartController>()
+                                            .removeFromCart(cartItem.product);
+
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'Remove',
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                    ),
+                                  ],
+                                ));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Icon(
+                          Icons.delete_outlined,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Text('Rs ${cartItem.product.price * cartItem.quantity}'),
+                    Text('Rs ${cartItem.product.price * cartItem.quantity}')
                   ],
                 ),
               ],
@@ -66,7 +108,7 @@ class CartItemTile extends StatelessWidget {
           ),
           const Divider(
             thickness: 2,
-          ),
+          )
         ],
       ),
     );

@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/data/models/product/product.dart';
+import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
 import 'package:grocery_nepal/modules/product_detail/product_detail_screen.dart';
-import 'package:grocery_nepal/widgets/widgets.dart';
+import 'package:grocery_nepal/widgets/loading.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({Key? key, required this.product}) : super(key: key);
+  const ProductTile({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   final Product product;
 
@@ -16,10 +20,14 @@ class ProductTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(() => ProductDetail(), arguments: product);
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => ProductDetail(product: product)));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
             color: Colors.grey.shade50,
             borderRadius: BorderRadius.circular(10),
@@ -32,7 +40,7 @@ class ProductTile extends StatelessWidget {
                   blurRadius: 2)
             ]),
         height: 180,
-        width: 130,
+        width: 140,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,18 +54,14 @@ class ProductTile extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-
                 // Image.network(
                 //   imageUrl + product.image,
                 //   errorBuilder: (context, url, error) {
-                //     return Image.asset("assets/images/dummy_image.png");
+                //     return Image.asset(
+                //       'assets/images/dummy_image.png',
+                //       fit: BoxFit.cover,
+                //     );
                 //   },
-                // ),
-                // CachedNetworkImage(
-                //   imageUrl: imageUrl + product.image,
-                //   placeholder: (context, url) => const Loading(),
-                //   errorWidget: (context, url, error) =>
-                //       Image.asset("assets/images/dummy_image.png"),
                 // ),
               ),
             ),
@@ -67,18 +71,25 @@ class ProductTile extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
+            Text(
+              product.unit,
+              style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Rs. ${product.price}'),
+                Text(
+                  'Rs ${product.price}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text('Added to cart'),
-                          duration: Duration(milliseconds: 1000),
-                          backgroundColor: greenColor),
-                    );
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Added to cart.'),
+                      backgroundColor: greenColor,
+                      duration: Duration(milliseconds: 1200),
+                    ));
+                    Get.find<CartController>().addToCart(product);
                   },
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 5),

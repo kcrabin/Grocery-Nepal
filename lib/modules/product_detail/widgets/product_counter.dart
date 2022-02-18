@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocery_nepal/modules/product_detail/product_detail_controller.dart';
 
 import '../../../constants.dart';
+import '../product_detail_controller.dart';
 
 class ProductCounter extends StatelessWidget {
   @override
@@ -12,16 +12,16 @@ class ProductCounter extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         margin: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-            color: Colors.grey.shade100,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: Colors.grey)),
+            //border: Border.all(color: Colors.grey)
+            color: Colors.grey.shade300),
         child: Row(
           children: [
             InkWell(
               onTap: controller.decrement,
               child: const Icon(
                 Icons.remove,
-                color: greenColor,
+                color: Colors.red,
                 size: 18,
               ),
             ),
@@ -30,7 +30,7 @@ class ProductCounter extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 7),
               constraints: const BoxConstraints(minWidth: 30),
               decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: Colors.grey.shade50,
                   border: Border.all(color: Colors.grey.shade300)),
               child:
                   Center(child: Obx(() => Text("${controller.count.value}"))),
