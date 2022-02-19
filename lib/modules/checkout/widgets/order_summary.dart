@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/order/cart_items.dart';
 
 class OrderSummary extends StatelessWidget {
-  const OrderSummary({Key? key}) : super(key: key);
+  const OrderSummary(this.cartItems, {Key? key}) : super(key: key);
+  final List<CartItem> cartItems;
+
+  double getTotal() {
+    double total = 0;
+    for (var item in cartItems) {
+      total += item.product.price * item.quantity;
+    }
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,41 +25,58 @@ class OrderSummary extends StatelessWidget {
             "Order Summary",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 22,
+              fontSize: 18,
             ),
           ),
+          const SizedBox(height: 5),
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
-              itemBuilder: (context, index) => Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Cabbage",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) => Card(
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 10, 25, 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                cartItems[index].product.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
-                            ),
-                            Text("Unit"),
-                            Text("Price"),
-                          ],
-                        ),
-                        const Text("x1")
-                      ],
+                              Text(
+                                cartItems[index].product.unit,
+                                style: const TextStyle(color: Colors.grey),
+                              ),
+                              Text(
+                                "RS ${cartItems[index].product.price}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: greenColor),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "x ${cartItems[index].quantity}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: greenColor),
+                          )
+                        ],
+                      ),
                     ),
                   )),
-          const Align(
+          Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "Total: Rs. 5000",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "Total: Rs ${getTotal()}",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
         ],

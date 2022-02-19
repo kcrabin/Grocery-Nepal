@@ -10,6 +10,7 @@ import 'package:grocery_nepal/modules/home/home_screen.dart';
 import 'package:grocery_nepal/modules/order_tab/order_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'modules/cart_tab/cart_controller.dart';
 import 'modules/favourites/favourites_controller.dart';
 
 void main() async {
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
           Get.put(OrderController());
           Get.put(AppController(sharedPreferences), permanent: true);
           Get.put(FavouitesController(), permanent: true);
+          Get.put(CartController(), permanent: true);
         }),
         initialRoute: '/',
         routes: {

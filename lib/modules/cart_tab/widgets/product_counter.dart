@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/order/cart_items.dart';
 
+import 'package:grocery_nepal/data/models/order/cart_items.dart';
 import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
 
-class ProductCounter extends StatefulWidget {
+class ProductCounter extends StatelessWidget {
   const ProductCounter(this.item, {Key? key}) : super(key: key);
   final CartItem item;
-  @override
-  State<ProductCounter> createState() => _ProductCounterState();
-}
-
-class _ProductCounterState extends State<ProductCounter> {
-  int _count = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    _count = widget.item.quantity;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +16,10 @@ class _ProductCounterState extends State<ProductCounter> {
       children: [
         InkWell(
           onTap: () {
-            if (_count > 1) {
-              setState(() {
-                _count--;
-              });
+            if (item.quantity > 1) {
+              Get.find<CartController>()
+                  .changeQuantity(CartItem(item.product, item.quantity - 1));
             }
-            Get.find<CartController>()
-                .changeQuantity(widget.item.product, _count);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -55,15 +40,12 @@ class _ProductCounterState extends State<ProductCounter> {
               borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
           margin: const EdgeInsets.symmetric(horizontal: 5),
-          child: Text('$_count'),
+          child: Text('${item.quantity}'),
         ),
         InkWell(
           onTap: () {
-            setState(() {
-              _count++;
-            });
             Get.find<CartController>()
-                .changeQuantity(widget.item.product, _count);
+                .changeQuantity(CartItem(item.product, item.quantity + 1));
           },
           child: Container(
             decoration: BoxDecoration(

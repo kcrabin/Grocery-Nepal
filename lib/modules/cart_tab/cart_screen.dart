@@ -40,10 +40,8 @@ class CartScreen extends StatelessWidget {
                               "Checkout (Rs. ${Get.find<CartController>().total.value})",
                               () {
                             if (Get.find<AppController>().isLoggedIn.isTrue) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return CheckoutScreen();
-                              }));
+                              Get.to(() => const CheckoutScreen(),
+                                  arguments: controller.cartItems);
                             } else {
                               showDialog(
                                   context: context,

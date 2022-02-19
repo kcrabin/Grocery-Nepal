@@ -1,29 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/checkout/checkout_controller.dart';
 import 'package:grocery_nepal/widgets/custom_button.dart';
 import 'package:grocery_nepal/widgets/input_field.dart';
 
-class ShippingAddressEdit extends StatefulWidget {
-  ShippingAddressEdit({Key? key}) : super(key: key);
-
-  @override
-  State<ShippingAddressEdit> createState() => _ShippingAddressEditState();
-}
-
-class _ShippingAddressEditState extends State<ShippingAddressEdit> {
-  final List<String> proviences = [
-    'province 1',
-    'Madesh ',
-    'Bagmati ',
-    'Gandaki',
-    'Lumbini',
-    'Karnali',
-    'Sudurpaschhim',
-  ];
-
+class ShippingAddressEdit extends StatelessWidget {
   String? selectedProvience;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<CheckoutController>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Shipping Address'),
@@ -36,16 +22,15 @@ class _ShippingAddressEditState extends State<ShippingAddressEdit> {
               'phone number',
               inputType: TextInputType.phone,
               textInputAction: TextInputAction.next,
+              controller: controller.phoneController,
             ),
             DropdownButtonFormField(
               decoration: InputDecoration(labelText: 'Provience'),
               value: selectedProvience,
               onChanged: (String? newValue) {
-                setState(() {
-                  selectedProvience = newValue;
-                });
+                controller.selectedProvience = newValue;
               },
-              items: proviences
+              items: controller.proviences
                   .map<DropdownMenuItem<String>>(
                     (String value) => DropdownMenuItem<String>(
                       child: Text(
@@ -60,17 +45,19 @@ class _ShippingAddressEditState extends State<ShippingAddressEdit> {
               'City',
               // inputType: TextInputType.phone,
               textInputAction: TextInputAction.next,
+              controller: controller.cityController,
             ),
             InputField(
               'Address',
               // inputType: TextInputType.phone,
               textInputAction: TextInputAction.done,
+              controller: controller.addressController,
             ),
             SizedBox(
               height: 40,
             ),
             CustomButton('Update', () {
-              Navigator.pop(context);
+              controller.updateAddress();
             })
           ]),
         ),

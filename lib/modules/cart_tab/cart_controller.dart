@@ -53,10 +53,16 @@ class CartController extends GetxController {
     update();
   }
 
-  Future<void> changeQuantity(Product product, int quantity) async {
-    int index =
-        cartItems.indexWhere((element) => element.product.id == product.id);
-    cartItems[index].quantity = quantity;
+  Future<void> changeQuantity(CartItem cartItem) async {
+    int index = cartItems
+        .indexWhere((element) => element.product.id == cartItem.product.id);
+    cartItems[index].quantity = cartItem.quantity;
+    updateCart();
+    update();
+  }
+
+  void clearCart() {
+    cartItems = [];
     updateCart();
     update();
   }

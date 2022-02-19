@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 
-enum PaymentMethod { cod, khalti }
+import '../checkout_controller.dart';
 
-class PaymentMethodContainer extends StatefulWidget {
-  const PaymentMethodContainer({Key? key}) : super(key: key);
+// enum PaymentMethod { cod, khalti }
 
-  @override
-  State<PaymentMethodContainer> createState() => _PaymentMethodState();
-}
+class PaymentMethodContainer extends StatelessWidget {
+  const PaymentMethodContainer({required this.isCod, Key? key})
+      : super(key: key);
 
-class _PaymentMethodState extends State<PaymentMethodContainer> {
+  final bool isCod;
+
   Widget getPaymentTile(
       {required String image,
       required bool isSelected,
@@ -22,7 +23,7 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: greenColor.withOpacity(0.1),
-            border: Border.all(color: greenColor, width: isSelected ? 2 : 1),
+            border: Border.all(color: greenColor, width: isSelected ? 2 : 0),
             borderRadius: BorderRadius.circular(10)),
         height: 80,
         child: Image.asset(image),
@@ -30,20 +31,18 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
     ));
   }
 
-  PaymentMethod paymentMethod = PaymentMethod.cod;
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             "Payment Method",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 22,
+              fontSize: 18,
             ),
           ),
           const SizedBox(
@@ -53,24 +52,20 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               getPaymentTile(
-                image: "assets/images/khalti.png",
-                isSelected: paymentMethod == PaymentMethod.khalti,
+                image: "assets/icons/khalti.png",
+                isSelected: !isCod,
                 onPress: () {
-                  setState(() {
-                    paymentMethod = PaymentMethod.khalti;
-                  });
+                  Get.find<CheckoutController>().isCod(false);
                 },
               ),
               const SizedBox(
                 width: 10,
               ),
               getPaymentTile(
-                image: "assets/images/cash.png",
-                isSelected: paymentMethod == PaymentMethod.cod,
+                image: "assets/icons/cod.png",
+                isSelected: isCod,
                 onPress: () {
-                  setState(() {
-                    paymentMethod = PaymentMethod.cod;
-                  });
+                  Get.find<CheckoutController>().isCod(true);
                 },
               ),
             ],

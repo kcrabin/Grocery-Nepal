@@ -12,8 +12,12 @@ class OrderDetailController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    orderId = Get.arguments;
-    getOrderDetails();
+    if (Get.arguments is int) {
+      orderId = Get.arguments;
+      getOrderDetails();
+    } else {
+      orderDetail = Get.arguments;
+    }
   }
 
   Future<void> getOrderDetails() async {

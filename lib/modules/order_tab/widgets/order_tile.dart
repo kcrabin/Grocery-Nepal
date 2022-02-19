@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/data/models/order/order.dart';
 import 'package:grocery_nepal/modules/order_detail/order_detail_screen.dart';
+import 'package:intl/intl.dart';
 
 class OrderTile extends StatelessWidget {
   final Order order;
@@ -41,7 +42,11 @@ class OrderTile extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Text(
-                  order.dateOrdered ?? '',
+                  DateFormat('dd-MM-yyy').format(
+                    DateTime.parse(
+                      order.dateOrdered ?? DateTime.now().toString(),
+                    ),
+                  ),
                   style: const TextStyle(color: greyColor),
                 ),
                 Text(
