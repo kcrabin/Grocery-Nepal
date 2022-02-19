@@ -24,7 +24,10 @@ dependencies:
   cached_network_image: ^3.2.0
   shared_preferences: ^2.0.13
   intl: ^0.17.0
-  khalti_flutter: ^2.0.1
+  esewa_pnp:
+      git:
+          url: https://github.com/aryalg/esewa_pnp.git
+          ref: master
 
 dev_dependencies:
   flutter_launcher_icons: "^0.9.2"

@@ -52,7 +52,7 @@ class PaymentMethodContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               getPaymentTile(
-                image: "assets/icons/khalti.png",
+                image: "assets/icons/esewa.png",
                 isSelected: !isCod,
                 onPress: () {
                   Get.find<CheckoutController>().isCod(false);

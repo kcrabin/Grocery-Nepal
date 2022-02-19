@@ -1,3 +1,5 @@
+import 'package:esewa_pnp/esewa.dart';
+import 'package:esewa_pnp/esewa_pnp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/app_controller.dart';
@@ -5,7 +7,6 @@ import 'package:grocery_nepal/data/api/order_api.dart';
 import 'package:grocery_nepal/data/models/order/cart_items.dart';
 import 'package:grocery_nepal/data/models/order/order_request.dart';
 import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
-import 'package:grocery_nepal/modules/checkout/widgets/shipping_address.dart';
 
 import 'order_success/order_success.dart';
 
@@ -30,6 +31,9 @@ class CheckoutController extends GetxController {
 
   Map<String, String>? shippingAddress;
   String? fullAddress;
+
+  late final ESewaConfiguration _configuration;
+  late final ESewaPnp _eSewaPnp;
   //  {
   //   'phone': '',
   //   'province': '',
@@ -44,6 +48,12 @@ class CheckoutController extends GetxController {
     phoneController = TextEditingController();
     cityController = TextEditingController();
     addressController = TextEditingController();
+
+    _configuration = ESewaConfiguration(
+        clientID: "JB0BBQ4aD0UqIThFJwAKBgAXEUkEGQUBBAwdOgABHD4DChwUAB0R",
+        secretKey: "BhwIWQQADhIYSxILExMcAgFXFhcOBwAKBgAXEQ==",
+        environment: ESewaConfiguration.ENVIRONMENT_TEST);
+    _eSewaPnp = ESewaPnp(configuration: _configuration);
   }
 
   void setShippingAddress(Map<String, String> address) {
@@ -70,10 +80,13 @@ class CheckoutController extends GetxController {
       OrderRequest orderRequest = OrderRequest(
         shippingAddress: fullAddress ?? '',
         phoneNumber: shippingAddress!["phone"] ?? '',
-        paymentMethod: isCod.isTrue ? 'COD' : 'Khalti',
+        paymentMethod: isCod.isTrue ? 'COD' : 'eSewa',
         paymentStatus: isCod.isFalse,
         orderItems: orderItems,
       );
+      if (isCod.isFalse) {
+        await esewaPayment();
+      }
       var orderResponse = await OrderApi.confirmOrder(orderRequest);
       Get.find<CartController>().clearCart();
       isLoading(false);
@@ -85,9 +98,26 @@ class CheckoutController extends GetxController {
       if (e.toString().contains("SocketException")) {
         errorMessage = "No Internet Connection";
       } else {
-        errorMessage = 'Unable to process order';
+        errorMessage = e.toString();
       }
       showSnackbar('Error', errorMessage);
+    }
+  }
+
+  Future<void> esewaPayment() async {
+    ESewaPayment _payment = ESewaPayment(
+        amount: 500,
+        productName: "Grocery Nepal",
+        productID: "<123",
+        callBackURL: "");
+    try {
+      final _res = await _eSewaPnp.initPayment(payment: _payment);
+      Get.snackbar(
+        'Success',
+        _res.message ?? 'Payment Successful',
+      );
+    } on ESewaPaymentException catch (e) {
+      throw Exception(e.message);
     }
   }
 
